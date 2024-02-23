@@ -33,53 +33,52 @@ function StarwarsCharacterDetails() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [characterId]);
 
   return (
-    <VStack spacing={8} p={6} w="100%" maxW="700px" className="px-5">
-      {/* <div className="relative w-full h-full rounded-md -z-50">
-        <Image
-          src={`https://picsum.photos/200/200/?random=/${characterId}.jpg`}
-          alt={`${character?.name} Image`}
-          className=" w-full rounded-md"
-        />
-      </div> */}
+    <VStack
+      spacing={8}
+      p={6}
+      w="100%"
+      maxW="700px"
+      height={"35rem"}
+      className="px-5 border rounded-b-md -z-10"
+    >
+      <Heading as="h1" className="mt-5">
+        {character?.name}
+      </Heading>
+      {!isLoading && (
+        <ul className="p-5 rounded-md text-center flex flex-col items-center justify-center">
+          <li className="flex items-center gap-3">
+            <span className="font-bold text-xl">Gender</span>{" "}
+            <p>{character?.gender}</p>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="font-bold text-xl">Height</span>{" "}
+            <p>{character?.height}</p>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="font-bold text-xl">Weight</span>{" "}
+            <p>{character?.mass} kg</p>
+          </li>
+        </ul>
+      )}
 
-      <div className="absolute flex flex-col items-center justify-centergap-5 gap-10 text-blue-200 w-[25rem]">
-        <Heading as="h1" className="text-blue-200 mt-5">
-          {character?.name}
-        </Heading>
-        {!isLoading && (
-          <ul className="border w-full p-5 bg-gray-600 rounded-md text-center flex flex-col items-center justify-center">
-            <li className="flex items-center gap-3">
-              <span className="font-bold text-xl">Gender</span>{" "}
-              <p>{character?.gender}</p>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="font-bold text-xl">Height</span>{" "}
-              <p>{character?.height}</p>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="font-bold text-xl">Weight</span>{" "}
-              <p>{character?.mass} kg</p>
-            </li>
-          </ul>
-        )}
+      {isLoading && (
+        <Grid className="h-[10rem] flex items-center justify-center">
+          <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
+        </Grid>
+      )}
 
-        {isLoading && (
-          <Grid className="h-[25rem] flex items-center justify-center">
+      <Suspense
+        fallback={
+          <Grid className="h-[5rem] flex items-center justify-center">
             <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
           </Grid>
-        )}
-
-        <Suspense
-          fallback={
-            <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
-          }
-        >
-          <MoviesList character={character} />
-        </Suspense>
-      </div>
+        }
+      >
+        <MoviesList character={character} />
+      </Suspense>
     </VStack>
   );
 }

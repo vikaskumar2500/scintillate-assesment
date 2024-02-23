@@ -55,7 +55,7 @@ function StarwarsCharacterList() {
   console.log(currentPage);
 
   return (
-    <VStack spacing={8} p={6} maxW="700px" w="100%" className="px-5">
+    <VStack spacing={8} p={6} maxW="700px" w="100%" className="px-5 border rounded-b-md -z-10">
       <Heading as="h1">Characters</Heading>
       {!isLoading && (
         <Grid
@@ -83,7 +83,7 @@ function StarwarsCharacterList() {
                       character.url.split("/")[5] / 11
                     )}.jpg`}
                     alt={`${character.name} Image`}
-                    className="h-[8rem] w-full"
+                    className="h-[8rem] w-full rounded-md"
                   />
                   <Heading as="h2" size="md" mb={2}>
                     {character.name}

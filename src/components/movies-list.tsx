@@ -56,7 +56,7 @@ export const MoviesList = ({ character }: MoviesListProps) => {
         </ul>
       )}
       {isMoviesLoading && (
-        <Grid className="h-[25rem] flex items-center justify-center">
+        <Grid className="flex items-center justify-center">
           <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
         </Grid>
       )}
