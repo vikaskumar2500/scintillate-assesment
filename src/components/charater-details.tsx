@@ -37,13 +37,13 @@ function StarwarsCharacterDetails() {
 
   return (
     <VStack spacing={8} p={6} w="100%" maxW="700px" className="px-5">
-      <div className="relative w-full h-full rounded-md -z-50">
+      {/* <div className="relative w-full h-full rounded-md -z-50">
         <Image
           src={`https://picsum.photos/200/200/?random=/${characterId}.jpg`}
           alt={`${character?.name} Image`}
           className=" w-full rounded-md"
         />
-      </div>
+      </div> */}
 
       <div className="absolute flex flex-col items-center justify-centergap-5 gap-10 text-blue-200 w-[25rem]">
         <Heading as="h1" className="text-blue-200 mt-5">
