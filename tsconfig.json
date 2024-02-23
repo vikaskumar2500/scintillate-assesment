@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,6 +17,15 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-  ]
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "upload.env.local",
+    "src/app/api/trial/route.js"
+  ],
+  "exclude": ["node_modules"],
+  "paths": {
+    "@/*": ["./src/*"]
+  }
 }

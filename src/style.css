@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.visible-scrollbar,
+.invisible-scrollbar,
+.mostly-customized-scrollbar {
+  @apply block w-full overflow-auto;
+}
+
+/* Optionally customize scrollbar appearance */
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for invisible-scrollbar */
+}
+
+.mostly-customized-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  scrollbar-width: 10px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+}
+
+.mostly-customized-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #7e7d7d;
+  border-radius: 20px;
+}

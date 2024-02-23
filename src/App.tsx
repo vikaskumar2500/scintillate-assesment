@@ -1,38 +1,35 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import "./style.css";
+import { ChakraProvider, Box, theme, Link, Center } from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import CharacterList from "./components/charater-list";
+import CharacterDetails from "./components/charater-details";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
+export const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <CharacterList />,
+    },
+    {
+      path: "/characters/:characterId",
+      element: <CharacterDetails />,
+    },
+  ]);
+  return (
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center" marginTop={"5rem"} fontSize="xl">
+        <nav className="fixed items-center justify-between top-0 left-0 w-full z-100 py-5 border-b-2">
+          <Link href="/" className="w-full h-full">
+            Home
           </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+          <ColorModeSwitcher className="text-gray-700" justifySelf="flex-end" />
+        </nav>
+
+        <Center className="w-[40rem] rounded-md h-full mx-auto">
+          <RouterProvider router={router} />
+        </Center>
+      </Box>
+    </ChakraProvider>
+  );
+};
