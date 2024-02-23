@@ -1,15 +1,7 @@
 import React, { useState, useEffect, useCallback, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../lib/loader";
-import {
-  VStack,
-  Box,
-  Grid,
-  Heading,
-  Text,
-  useToast,
-  Image,
-} from "@chakra-ui/react";
+import { VStack, Grid, Heading, useToast, Image } from "@chakra-ui/react";
 import { MoviesList } from "./movies-list";
 
 function StarwarsCharacterDetails() {
@@ -45,16 +37,18 @@ function StarwarsCharacterDetails() {
 
   return (
     <VStack spacing={8} p={6} w="100%" maxW="700px" className="px-5">
-        <div className="relative w-full h-full rounded-md -z-50">
-          <Image
-            src={`https://picsum.photos/200/200/?random=/${characterId}.jpg`}
-            alt={`${character?.name} Image`}
-            className=" w-full rounded-md"
-          />
-        </div>
+      <div className="relative w-full h-full rounded-md -z-50">
+        <Image
+          src={`https://picsum.photos/200/200/?random=/${characterId}.jpg`}
+          alt={`${character?.name} Image`}
+          className=" w-full rounded-md"
+        />
+      </div>
 
       <div className="absolute flex flex-col items-center justify-centergap-5 gap-10 text-blue-200 w-[25rem]">
-        <Heading as="h1" className="text-blue-200 mt-5">{character?.name}</Heading>
+        <Heading as="h1" className="text-blue-200 mt-5">
+          {character?.name}
+        </Heading>
         {!isLoading && (
           <ul className="border w-full p-5 bg-gray-600 rounded-md text-center flex flex-col items-center justify-center">
             <li className="flex items-center gap-3">
@@ -78,15 +72,13 @@ function StarwarsCharacterDetails() {
           </Grid>
         )}
 
-        {!isLoading && (
-          <Suspense
-            fallback={
-              <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
-            }
-          >
-            <MoviesList character={character} />
-          </Suspense>
-        )}
+        <Suspense
+          fallback={
+            <Loader className="text-black w-8 h-8 rounded-full dark:text-gray-100 animate-spin stroke-pink-50" />
+          }
+        >
+          <MoviesList character={character} />
+        </Suspense>
       </div>
     </VStack>
   );
